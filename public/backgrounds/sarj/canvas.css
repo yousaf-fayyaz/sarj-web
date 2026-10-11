@@ -1,0 +1,47 @@
+:root {
+  --background: #07100b;
+  --foreground: #f4f8ef;
+  --primary: #b8d58f;
+  --primary-hover: #c9dea7;
+}
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--background);
+}
+#ip1j {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#ijsk {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+.opening-crystalized-ball {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  filter: brightness(0.65) drop-shadow(14px 22px 24px rgb(0 4 2 / 75%))
+    drop-shadow(-3px -5px 15px rgb(184 213 143 / 10%));
+}
+/* Adjust the canvas crop for compact viewports. */
+@media (max-width: 480px) {
+  #ip1j { top: 10dvh; height: revert; }
+  #ijsk { height: 125dvh; top: -20dvh; }
+}

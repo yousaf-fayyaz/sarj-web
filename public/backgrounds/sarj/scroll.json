@@ -1,0 +1,110 @@
+{
+  "desktop": {
+    "height": 13801,
+    "viewportHeight": 1000,
+    "anchors": [
+      {
+        "id": "i3owk",
+        "position": 0,
+        "percentage": 0
+      },
+      {
+        "id": "i3owk-2-3",
+        "position": 3715,
+        "percentage": 0.083
+      },
+      {
+        "id": "i3owk-2-2-3-2",
+        "position": 7652,
+        "percentage": 0.235
+      },
+      {
+        "id": "i3owk-2-2-3",
+        "position": 11026,
+        "percentage": 0.336
+      },
+      {
+        "id": "i3owk-2-2-2",
+        "position": 12801,
+        "percentage": 0.4
+      },
+      {
+        "id": "i3owk-2-2-2-2",
+        "position": 13801,
+        "percentage": 0.499
+      }
+    ]
+  },
+  "tablet": {
+    "height": 14497,
+    "viewportHeight": 1000,
+    "anchors": [
+      {
+        "id": "i3owk",
+        "position": 0,
+        "percentage": 0
+      },
+      {
+        "id": "i3owk-2-3",
+        "position": 3333,
+        "percentage": 0.083
+      },
+      {
+        "id": "i3owk-2-2-3-2",
+        "position": 7611,
+        "percentage": 0.235
+      },
+      {
+        "id": "i3owk-2-2-3",
+        "position": 10585,
+        "percentage": 0.336
+      },
+      {
+        "id": "i3owk-2-2-2",
+        "position": 13497,
+        "percentage": 0.4
+      },
+      {
+        "id": "i3owk-2-2-2-2",
+        "position": 14497,
+        "percentage": 0.499
+      }
+    ]
+  },
+  "mobile": {
+    "height": 12116,
+    "viewportHeight": 1000,
+    "anchors": [
+      {
+        "id": "i3owk",
+        "position": 0,
+        "percentage": 0
+      },
+      {
+        "id": "i3owk-2-3",
+        "position": 2847,
+        "percentage": 0.083
+      },
+      {
+        "id": "i3owk-2-2-3-2",
+        "position": 5741,
+        "percentage": 0.235
+      },
+      {
+        "id": "i3owk-2-2-3",
+        "position": 8435,
+        "percentage": 0.336
+      },
+      {
+        "id": "i3owk-2-2-2",
+        "position": 11116,
+        "percentage": 0.4
+      },
+      {
+        "id": "i3owk-2-2-2-2",
+        "position": 12116,
+        "percentage": 0.499
+      }
+    ]
+  }
+}

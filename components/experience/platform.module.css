@@ -1,0 +1,450 @@
+@property --capability-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:global(.marketing-site) .overview:global(.viewport-stage) {
+  --capability-stage-height: max(0px, calc(var(--stage-height) - var(--platform-section-gap)));
+  --module-visual-height: clamp(60px, calc(var(--capability-stage-height) - 590px), 150px);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  height: auto;
+  min-height: var(--capability-stage-height);
+  gap: clamp(14px, 2.5svh, 26px);
+  isolation: isolate;
+}
+
+.overview::before {
+  content: "";
+  position: absolute;
+  inset: 0 -40px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 70% 55%, #b9f7780a, transparent 65%),
+    linear-gradient(#b8d58f04 1px, transparent 1px),
+    linear-gradient(90deg, #b8d58f04 1px, transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+  mask-image: linear-gradient(transparent, #000 20%, #000 70%, transparent);
+}
+
+.overview .heading:global(.section-heading) {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  align-items: end;
+  gap: 10px 64px;
+  margin: 0;
+  padding: 0;
+}
+
+.heading > :global(.eyebrow) {
+  grid-column: 1 / -1;
+  font-size: 10px;
+}
+
+.overview .heading h2 {
+  margin: 0;
+  font-size: clamp(32px, 3.2vw, 44px);
+  line-height: 1.06;
+  letter-spacing: -0.055em;
+}
+
+.overview .heading h2 > span {
+  color: #c3ed9c;
+}
+
+.overview .heading > p {
+  max-width: 390px;
+  margin: 0 0 4px;
+  color: #a6b8aa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.railStage {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.overview:global(.platform-overview) :global(.service-rail) {
+  --card-width: min(100%, clamp(379.5px, 33vw, 451px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.overview :global(.service-rail-meta) {
+  padding-bottom: 12px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.overview :global(.service-rail-label) {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.overview :global(.service-rail-label)::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c3ed9c;
+  box-shadow: 0 0 12px #baff8480;
+  animation: connectionPulse 2.4s ease-in-out infinite;
+}
+
+.overview:global(.platform-overview) :global(.service-rail-viewport) {
+  display: flex;
+  flex-flow: row nowrap;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 18px;
+  padding: 8px 2px 12px;
+  scrollbar-width: none;
+  scroll-snap-type: none;
+  perspective: 1000px;
+}
+
+.overview :global(.service-rail-viewport)::-webkit-scrollbar {
+  display: none;
+}
+
+.overview .card:global(.service-card) {
+  --service-accent: hsl(86 48% 56%);
+  display: flex;
+  flex: 0 0 var(--card-width);
+  flex-direction: column;
+  gap: 0;
+  padding: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #b8d58f2b;
+  border-radius: 20px;
+  background: linear-gradient(155deg, #1e3424e8, #101c15f5 45%, #0c1712fa);
+  box-shadow: inset 0 1px 0 #e3ffcc08, 0 12px 24px #00000018;
+  scroll-snap-align: start;
+  transform: rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg));
+  transition: transform 220ms ease-out, border-color 220ms, box-shadow 220ms;
+}
+
+.overview .card:global(.service-card-1) { --service-accent: hsl(86 48% 61%); }
+.overview .card:global(.service-card-2) { --service-accent: hsl(86 48% 66%); }
+.overview .card:global(.service-card-3) { --service-accent: hsl(86 48% 71%); }
+.overview .card:global(.service-card-4) { --service-accent: hsl(86 48% 76%); }
+.overview .card:global(.service-card-5) { --service-accent: hsl(86 48% 81%); }
+
+.overview .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  height: auto;
+  border-radius: inherit;
+  background: conic-gradient(from var(--capability-angle), transparent 0% 64%, var(--service-accent) 76%, #f0ffe4 79%, transparent 86%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: borderOrbit 6s linear infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.overview .card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(280px circle at var(--card-pointer-x, 50%) var(--card-pointer-y, 25%), color-mix(in srgb, var(--service-accent) 16%, transparent), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms;
+}
+
+.overview .card:is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, var(--service-accent) 50%, transparent);
+  box-shadow: inset 0 1px 0 #e3ffcc10, 0 12px 32px #0000002b;
+}
+
+.overview .card:is(:hover, :focus-visible)::before,
+.overview .card:is(:hover, :focus-visible)::after {
+  opacity: 1;
+}
+
+.overview .card :global(.service-card-topline) {
+  flex-shrink: 0;
+  min-height: 20px;
+  font-size: 9px;
+  letter-spacing: 0.075em;
+}
+
+.overview .card :global(.service-card-label) {
+  gap: 7px;
+}
+
+.overview .card :global(.service-card-label) svg {
+  width: 14px;
+  height: 14px;
+}
+
+.overview .card :global(.service-card-index) {
+  color: var(--service-accent);
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.overview .card :global(.module-line-art) {
+  position: relative;
+  flex: 0 1 var(--module-visual-height);
+  width: 100%;
+  height: var(--module-visual-height);
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--module-visual-height);
+  min-height: 0;
+  margin: 12px 0;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--service-accent) 7%, transparent), transparent 70%);
+}
+
+.overview .card :global(.module-line-art) svg {
+  height: 100%;
+  overflow: visible;
+}
+
+.overview :global(.line-art-outline) {
+  stroke-opacity: 0.95;
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--service-accent) 35%, transparent));
+}
+
+.overview :global(.line-art-signal) {
+  stroke-dasharray: 14 86;
+  stroke-width: 2;
+  animation-duration: 2.8s;
+}
+
+.overview :global(.line-art-halo) {
+  stroke-width: 7;
+  opacity: 0.8;
+}
+
+.overview :global(.line-art-orbit) {
+  transform-origin: 160px 68px;
+  animation: hologramOrbit 14s linear infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.overview :global(.line-art-orbit-reverse) {
+  animation-duration: 20s;
+  animation-direction: reverse;
+}
+
+.overview :global(.line-art-core) {
+  transform-origin: 160px 68px;
+  animation: corePulse 3s ease-in-out infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.overview :global(.line-art-scan) {
+  animation: scanPass 4s ease-in-out infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.overview :global(.module-line-art) svg,
+.overview :global(.module-line-art) svg * {
+  animation: none;
+}
+
+.overview :global(.line-art-signal),
+.overview :global(.line-art-scan) {
+  display: none;
+}
+
+.overview .card :global(.service-card-copy) {
+  flex: 1;
+}
+
+.overview .card h3 {
+  margin: 0 0 8px;
+  font-size: 25px;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  text-wrap: pretty;
+}
+
+.overview .card :global(.service-card-copy) > p {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  color: #aebfb3;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.overview .card ul {
+  gap: 7px;
+  margin: 14px 0 16px;
+  padding: 12px 0 0;
+  border-top-color: #b8d58f1c;
+}
+
+.overview .card li {
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #cfddce;
+}
+
+.overview .card li svg {
+  margin-top: 3px;
+}
+
+.overview .card :global(.service-card-footer) {
+  flex-shrink: 0;
+  padding-top: 12px;
+  font-size: 12px;
+}
+
+.overview .card :global(.service-card-arrow) {
+  width: 28px;
+  height: 28px;
+  color: #0c1b12;
+  border: none;
+  background: var(--service-accent);
+  transition: box-shadow 250ms;
+}
+
+.overview .card:hover :global(.service-card-arrow) {
+  box-shadow: 0 0 18px color-mix(in srgb, var(--service-accent) 35%, transparent);
+}
+
+.overview :global(.service-rail-footer) {
+  gap: 22px;
+  padding-block: 6px 10px;
+}
+
+.overview :global(.service-rail-controls) button {
+  width: 36px;
+  height: 36px;
+  background: #b8d58f08;
+}
+
+.overview :global(.service-rail-shortcuts) {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 12px;
+  padding-inline-end: 140px;
+}
+
+.overview :global(.service-rail-shortcuts) button {
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 0;
+  gap: 6px;
+  font-size: 9px;
+}
+
+.overview :global(.service-rail-shortcuts) button span {
+  font-size: 12px;
+}
+
+.overview[data-in-view="false"] *,
+.overview[data-in-view="false"] *::before,
+:global(.site[data-motion="paused"]) .overview *,
+:global(.site[data-motion="paused"]) .overview *::before {
+  animation-play-state: paused !important;
+}
+
+:global(.site[data-motion="paused"]) .overview .card {
+  transform: none;
+  transition: none;
+}
+
+@keyframes borderOrbit { to { --capability-angle: 360deg; } }
+@keyframes hologramOrbit { to { transform: rotate(360deg); } }
+@keyframes corePulse { 50% { opacity: 0.5; transform: scale(0.85); } }
+@keyframes scanPass {
+  0%, 100% { transform: translateY(-48px); opacity: 0; }
+  20%, 70% { opacity: 0.65; }
+  85% { transform: translateY(48px); opacity: 0; }
+}
+@keyframes connectionPulse {
+  50% { box-shadow: 0 0 0 4px #baff8410, 0 0 16px #baff8440; }
+}
+
+@media (min-width: 768px) and (max-height: 800px) {
+  .overview .heading h2 { font-size: 34px; }
+  .overview .heading > p { font-size: 13px; }
+  .overview .card:global(.service-card) { padding: 16px 18px; }
+  .overview .card :global(.module-line-art) { margin-block: 8px; }
+  .overview .card h3 { font-size: 23px; }
+  .overview .card ul { margin-block: 10px 12px; padding-top: 10px; gap: 6px; }
+  .overview .card :global(.service-card-footer) { padding-top: 10px; }
+}
+
+@media (max-width: 959px) {
+  .overview .heading:global(.section-heading) { gap: 8px 28px; }
+  .overview :global(.service-rail-shortcuts) button span { display: none; }
+  .overview :global(.service-rail-shortcuts) { justify-content: start; gap: 24px; }
+}
+
+@media (max-width: 767px) {
+  :global(.marketing-site) .overview:global(.viewport-stage) {
+    --module-visual-height: clamp(44px, calc(var(--capability-stage-height) - 630px), 104px);
+    gap: 12px;
+  }
+  .overview .heading:global(.section-heading) { grid-template-columns: 1fr; gap: 8px; }
+  .overview .heading h2 { font-size: 32px; }
+  .overview .heading > p { max-width: 430px; margin: 0; font-size: 13px; line-height: 1.4; }
+  .overview .heading > :global(.eyebrow) { font-size: 9px; }
+  .overview:global(.platform-overview) :global(.service-rail) { --card-width: min(374px, calc(110vw - 70.4px), 100%); }
+  .overview .card:global(.service-card) { padding: 16px 18px; border-radius: 16px; }
+  .overview .card h3 { font-size: 23px; }
+  .overview .card :global(.module-line-art) { margin-block: 8px; }
+  .overview .card ul { margin-block: 10px 12px; padding-top: 10px; gap: 6px; }
+  .overview .card :global(.service-card-footer) { padding-top: 10px; }
+  .overview :global(.service-rail-meta) { padding-bottom: 4px; font-size: 7px; gap: 8px; }
+  .overview:global(.platform-overview) :global(.service-rail-viewport) { padding-top: 4px; padding-bottom: 8px; }
+  .overview :global(.service-rail-footer) { flex-wrap: nowrap; gap: 10px; padding-block: 4px 0; }
+  .overview :global(.service-rail-hint) { min-width: 0; font-size: 10px; gap: 6px; }
+  .overview :global(.service-rail-controls) { gap: 8px; }
+  .overview :global(.service-rail-shortcuts) { display: none; }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  :global(.marketing-site) .overview:global(.viewport-stage) { gap: 8px; padding-block: 12px; }
+  .overview .heading h2 { font-size: 28px; }
+  .overview .card:global(.service-card) { padding: 12px 16px; }
+  .overview .card h3 { font-size: 22px; }
+  .overview .card :global(.module-line-art) { margin-block: 4px; }
+  .overview .card :global(.service-card-copy) > p { font-size: 12px; }
+  .overview .card li { font-size: 11px; }
+}
+
+@media (max-height: 600px) {
+  :global(.marketing-site) .overview:global(.viewport-stage) {
+    height: auto;
+    min-height: var(--capability-stage-height);
+    grid-template-rows: auto auto;
+  }
+  .overview:global(.platform-overview) :global(.service-rail) { grid-template-rows: auto auto auto auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overview *, .overview *::before { animation: none !important; }
+  .overview .card:global(.service-card) { transform: none; transition: none; }
+  .overview .card::before { background: linear-gradient(135deg, var(--service-accent), transparent 45%); }
+  .overview .card :global(.service-card-arrow) { transition: none; }
+}

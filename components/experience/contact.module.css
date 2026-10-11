@@ -1,0 +1,121 @@
+.section:global(.contact) .panel:global(.contact-panel) {
+  display: flex;
+  justify-content: center;
+  padding: clamp(32px, 5vw, 64px) 24px;
+  border: 1px solid #b8d58f2b;
+  border-radius: 20px;
+  background: #0c1712;
+  box-shadow: inset 0 1px 0 #e3ffcc08;
+}
+
+.section .copy:global(.contact-copy) {
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+}
+
+.section .copy > :global(.eyebrow) {
+  justify-content: center;
+  color: hsl(86 48% 71%);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.section:global(.contact) .copy:global(.contact-copy) h2 {
+  margin: 18px 0 0;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.section .copy h2 > span {
+  color: hsl(86 48% 71%);
+}
+
+.section:global(.contact) .copy:global(.contact-copy) > p {
+  max-width: 500px;
+  margin: 20px auto 0;
+  color: #aebfb3;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.section .actions:global(.action-group) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.section .actions :global(.action) {
+  min-height: 48px;
+  padding: 12px 20px;
+  font-size: 15px;
+}
+
+.section .actions :global(.action-secondary) {
+  border: 1px solid #b8d58f2b;
+  background: transparent;
+  color: #e4eddd;
+}
+
+.section .actions :global(.action-secondary):hover {
+  border-color: #b8d58f70;
+  background: #b8d58f08;
+}
+
+.section .email:global(.contact-email) {
+  margin-top: 0;
+  color: #a6b8aa;
+  font-size: 13px;
+}
+
+.methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 24px;
+}
+
+.section .email:hover {
+  color: hsl(86 48% 71%);
+}
+
+.section .support:global(.contact-support) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 20px;
+  color: #8b9d8b;
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+  .section:global(.contact) .panel:global(.contact-panel) {
+    padding: 32px 22px;
+    border-radius: 16px;
+  }
+  .section:global(.contact) .copy:global(.contact-copy) h2 {
+    font-size: clamp(30px, 8vw, 40px);
+    line-height: 1.15;
+  }
+  .section:global(.contact) .copy:global(.contact-copy) > p {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  .section .actions:global(.action-group) {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 24px;
+  }
+  .section .actions :global(.action) { justify-content: center; font-size: 14px; }
+  .section .email:global(.contact-email) { font-size: 12px; }
+  .section .support:global(.contact-support) { font-size: 12px; }
+}

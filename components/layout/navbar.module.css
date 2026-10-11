@@ -1,0 +1,378 @@
+.navigation.navigation {
+  gap: 18px;
+}
+
+.navigation :global(.brand-link) {
+  flex-shrink: 0;
+}
+
+.navigation .primaryLinks.primaryLinks {
+  display: flex;
+  gap: 2px;
+  min-height: 56px;
+  padding: 5px;
+  margin-inline-start: auto;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: transparent;
+}
+
+.navigation .primaryLinks a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 7px;
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transition:
+    color 220ms ease,
+    background 220ms ease;
+}
+
+.navigation .primaryLinks a::after {
+  inset-inline: 14px;
+  bottom: 6px;
+  background: var(--primary);
+  transform-origin: center;
+  transition: transform 260ms ease;
+}
+
+.navigation .primaryLinks a:is(:hover, :focus-visible, [aria-current]) {
+  color: var(--primary);
+  background: rgb(var(--primary-rgb) / 7%);
+}
+
+.navigation .primaryLinks a:is(:hover, :focus-visible, [aria-current])::after {
+  transform: scaleX(1);
+}
+
+.linkLabel {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.linkLabel > span {
+  display: block;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.linkLabel > span + span {
+  position: absolute;
+  inset: 0;
+  transform: translateY(110%);
+}
+
+.primaryLinks a:is(:hover, :focus-visible) .linkLabel > span:first-child {
+  transform: translateY(-110%);
+}
+
+.primaryLinks a:is(:hover, :focus-visible) .linkLabel > span + span {
+  transform: translateY(0);
+}
+
+.moreButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-inline-start: 1px solid var(--border);
+  border-radius: 0 7px 7px 0;
+  color: var(--foreground);
+  background: transparent;
+  transition:
+    color 220ms ease,
+    background 220ms ease;
+}
+
+.moreButton:is(:hover, :focus-visible, [data-state="open"]) {
+  color: var(--primary);
+  background: rgb(var(--primary-rgb) / 7%);
+}
+
+.menuDots {
+  display: grid;
+  grid-template-columns: repeat(2, 4px);
+  gap: 4px;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menuDots > span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+:is(.moreButton, .mobileTrigger):is(:hover, :focus-visible, [data-state="open"])
+  .menuDots {
+  transform: rotate(90deg) scale(1.15);
+}
+
+.navigation .actions.actions {
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.navigation .actions :is(.login, .demo) {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-width: 96px;
+  min-height: 56px;
+  padding: 14px 24px;
+  border-radius: 11px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-transform: uppercase;
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    background 250ms ease;
+}
+
+.navigation .actions .login {
+  color: var(--primary-foreground);
+  background: #d3dfd5;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.navigation .actions .demo {
+  min-width: 148px;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.navigation .actions :is(.login, .demo)::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgb(255 255 255 / 30%) 50%,
+    transparent 80%
+  );
+  transform: translateX(-110%);
+  transition: transform 500ms ease;
+}
+
+.navigation .actions :is(.login, .demo):is(:hover, :focus-visible) {
+  color: var(--primary-foreground);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgb(var(--primary-rgb) / 13%);
+}
+
+.navigation .actions .login:is(:hover, :focus-visible) {
+  background: #e0e9e1;
+}
+
+.navigation .actions .demo:is(:hover, :focus-visible) {
+  background: var(--primary-hover);
+}
+
+.navigation .actions :is(.login, .demo):is(:hover, :focus-visible)::before {
+  transform: translateX(110%);
+}
+
+.navigation .actions .mobileTrigger {
+  display: none;
+}
+
+.menu.menu {
+  gap: 24px;
+  padding-block: 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.menu .menuLinks {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.menu > :global(.brand) {
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.menu .menuLinks a {
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 8px;
+  border-radius: 6px;
+  font-size: 16px;
+  transition:
+    color 220ms ease,
+    background 220ms ease;
+}
+
+.menu .menuLinks a:is(:hover, :focus-visible, [aria-current]) {
+  color: var(--primary);
+  background: rgb(var(--primary-rgb) / 7%);
+}
+
+.menuLinks a > span,
+.menuLinks a > svg {
+  transition: transform 250ms ease;
+}
+
+.menuLinks a:is(:hover, :focus-visible) > span {
+  transform: translateX(4px);
+}
+
+.menuLinks a:is(:hover, :focus-visible) > svg {
+  transform: translate(2px, -2px);
+}
+
+.menuActions {
+  display: grid;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.menuPhone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  min-height: 48px;
+  padding: 12px 8px;
+  border-block-start: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 15px;
+}
+
+.menuPhone bdi {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.menuPhone:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.menuActions > a {
+  min-height: 44px;
+  gap: 8px;
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+}
+
+.menu[dir="rtl"],
+.navigation:global(:lang(ar)) .primaryLinks a,
+.navigation:global(:lang(ar)) .actions :is(.login, .demo) {
+  font-family: var(--font-arabic), sans-serif;
+  letter-spacing: 0;
+}
+
+.menu[dir="rtl"] .menuLinks a:is(:hover, :focus-visible) > span {
+  transform: translateX(-4px);
+}
+
+.navigation:global(:lang(ar)) .moreButton {
+  border-radius: 7px 0 0 7px;
+}
+
+@media (max-width: 1199px) {
+  .navigation .primaryLinks.primaryLinks {
+    display: none;
+  }
+
+  .navigation .actions.actions {
+    margin-inline-start: auto;
+  }
+
+  .navigation .actions .mobileTrigger {
+    display: inline-flex;
+    width: 48px;
+    min-height: 48px;
+    border: 1px solid var(--border-strong);
+    border-radius: 11px;
+    color: var(--foreground);
+    background: var(--surface);
+    transition:
+      color 220ms ease,
+      background 220ms ease;
+  }
+
+  .navigation .actions .mobileTrigger:is(:hover, :focus-visible) {
+    color: var(--primary);
+    background: var(--surface-elevated);
+  }
+}
+
+@media (max-width: 767px) {
+  .navigation.navigation {
+    gap: 12px;
+  }
+
+  .navigation .actions .login {
+    min-width: 0;
+    min-height: 44px;
+    padding-inline: 14px;
+    font-size: 12px;
+  }
+
+  .navigation .actions .demo {
+    display: none;
+  }
+
+  .navigation .actions .mobileTrigger {
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 400px) {
+  .navigation .actions .login {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation *,
+  .navigation *::before,
+  .navigation *::after,
+  .menu,
+  .menu * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .navigation .linkLabel > span,
+  .navigation .menuDots,
+  .navigation .actions :is(.login, .demo):is(:hover, :focus-visible),
+  .menuLinks a:is(:hover, :focus-visible) > :is(span, svg) {
+    transform: none !important;
+  }
+
+  .linkLabel > span + span,
+  .navigation .actions :is(.login, .demo)::before {
+    display: none;
+  }
+}

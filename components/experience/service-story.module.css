@@ -1,0 +1,274 @@
+@property --workflow-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.story .panel:global(.service-story-panel) {
+  --service-accent: hsl(86 48% calc(56% + var(--panel-index, 0) * 5%));
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #b8d58f2b;
+  border-radius: 20px;
+  background: linear-gradient(155deg, #1e3424e8, #101c15f5 45%, #0c1712fa);
+  box-shadow: inset 0 1px 0 #e3ffcc08, 0 12px 24px #00000018;
+  transform: perspective(1000px)
+    translateY(calc(var(--stack-progress, 0) * -14px))
+    scale(calc(1 - var(--stack-progress, 0) * 0.035))
+    rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg));
+  transition: transform 220ms ease-out, border-color 220ms, box-shadow 220ms;
+}
+
+.story .panel::before,
+.story .panel :global(.workflow-visual)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--workflow-border-angle), transparent 0% 64%, var(--service-accent) 76%, #f0ffe4 79%, transparent 86%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: borderOrbit 6s linear infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.story .panel::after,
+.story .panel :global(.workflow-visual)::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(280px circle at var(--card-pointer-x, 50%) var(--card-pointer-y, 25%), color-mix(in srgb, var(--service-accent) 16%, transparent), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms;
+}
+
+.story .panel:is(:hover, :focus-within),
+.story .panel :global(.workflow-visual):is(:hover, :focus-within) {
+  border-color: color-mix(in srgb, var(--service-accent) 50%, transparent);
+  box-shadow: inset 0 1px 0 #e3ffcc10, 0 12px 32px #0000002b;
+}
+
+.story .panel:is(:hover, :focus-within)::before,
+.story .panel:is(:hover, :focus-within)::after,
+.story .panel :global(.workflow-visual):is(:hover, :focus-within)::before,
+.story .panel :global(.workflow-visual):is(:hover, :focus-within)::after {
+  opacity: 1;
+}
+
+.story .panel :global(.service-story-panel-heading),
+.story .panel :global(.service-story-copy) li svg,
+.story .panel :global(.service-story-action) {
+  color: var(--service-accent);
+}
+
+.story .panel :global(.service-story-action) {
+  border-color: color-mix(in srgb, var(--service-accent) 35%, transparent);
+}
+
+.story .panel :global(.service-story-action) svg {
+  transition: transform 250ms;
+}
+
+.story .panel :global(.service-story-action):is(:hover, :focus-visible) svg {
+  transform: translate(2px, -2px);
+}
+
+.story .panel :global(.workflow-visual) {
+  --visual-accent: var(--service-accent);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #b8d58f2b;
+  border-radius: 20px;
+  background: linear-gradient(155deg, #1e3424e8, #101c15f5 45%, #0c1712fa);
+  box-shadow: inset 0 1px 0 #e3ffcc08, 0 12px 24px #00000018;
+  transition: border-color 220ms, box-shadow 220ms;
+}
+
+.story .panel :global(.workflow-visual) h4 {
+  margin-block: 12px 16px;
+}
+
+.story .panel :global(.module-line-art) {
+  height: 60px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 60px;
+  margin: 8px 0 14px;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--service-accent) 7%, transparent), transparent 70%);
+}
+
+.story .panel :global(.module-line-art) svg {
+  height: 60px;
+  overflow: visible;
+}
+
+.story .panel :global(.line-art-outline) {
+  stroke-opacity: 0.95;
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--service-accent) 35%, transparent));
+}
+
+.story .panel :global(.line-art-signal) {
+  stroke-dasharray: 14 86;
+  stroke-width: 2;
+  animation-duration: 2.8s;
+}
+
+.story .panel :global(.line-art-halo) {
+  stroke-width: 7;
+  opacity: 0.8;
+}
+
+.story .panel :global(.line-art-orbit) {
+  transform-origin: 160px 68px;
+  animation: hologramOrbit 14s linear infinite;
+}
+
+.story .panel :global(.line-art-orbit-reverse) {
+  animation-duration: 20s;
+  animation-direction: reverse;
+}
+
+.story .panel :global(.line-art-core) {
+  transform-origin: 160px 68px;
+  animation: corePulse 3s ease-in-out infinite;
+}
+
+.story .panel :global(.line-art-scan) {
+  animation: scanPass 4s ease-in-out infinite;
+}
+
+.story .panel :is(:global(.line-art-orbit), :global(.line-art-core), :global(.line-art-scan)) {
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.story .panel :global(.module-line-art) svg,
+.story .panel :global(.module-line-art) svg * {
+  animation: none;
+}
+
+.story .panel :global(.line-art-signal),
+.story .panel :global(.line-art-scan) {
+  display: none;
+}
+
+.story .panel :is(:global(.ledger-route), :global(.request-hub), :global(.document-archive)) svg :is(path, polyline, line, rect) {
+  stroke-dasharray: 100;
+  animation: iconDraw 5s ease-in-out infinite;
+  animation-delay: var(--signal-delay, 0s);
+}
+
+.story .panel :global(.performance-graph) circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodePulse 3s ease-in-out infinite;
+}
+
+.story .panel :global(.performance-graph) circle:nth-last-child(2) { animation-delay: -0.6s; }
+.story .panel :global(.performance-graph) circle:last-child { animation-delay: -1.2s; }
+
+.story .panel :global(.graph-signal) {
+  stroke: color-mix(in srgb, var(--service-accent) 75%, white);
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--service-accent) 65%, transparent));
+  animation-duration: 2.8s;
+}
+
+.story .panel :global(.ledger-mark) { background: var(--service-accent); }
+.story .panel :global(.ledger-mark-1) { opacity: 0.65; }
+.story .panel :global(.ledger-mark-2) { opacity: 0.4; }
+
+.story .panel :global(.timeline-row) i {
+  background: color-mix(in srgb, var(--service-accent) 33%, transparent);
+  border-inline-start-color: var(--service-accent);
+}
+
+.story .panel :global(.timeline-row-1) i {
+  background: color-mix(in srgb, var(--service-accent) 16%, transparent);
+}
+
+.story .panel :global(.timeline-row) b,
+.story .panel :global(.approval-route)::before {
+  background: var(--service-accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--service-accent) 50%, transparent);
+}
+
+.story .panel :global(.request-hub) {
+  border-color: color-mix(in srgb, var(--service-accent) 20%, transparent);
+  background: #0c1712;
+}
+
+.story .panel :global(.request-hub-identity) { color: var(--service-accent); }
+.story .panel :global(.request-hub-row) { border-color: color-mix(in srgb, var(--service-accent) 12%, transparent); }
+
+.story .panel :global(.document-row) {
+  border-color: color-mix(in srgb, var(--service-accent) 14%, transparent);
+  background: color-mix(in srgb, var(--service-accent) 3%, transparent);
+}
+
+.story .panel :global(.document-row) > span { color: #cfddce; }
+.story .panel :global(.document-row) i { background: color-mix(in srgb, var(--service-accent) 14%, transparent); }
+
+.story .panel[data-in-view="false"] *,
+.story .panel[data-in-view="false"] *::before,
+.story .panel[data-in-view="false"]::before,
+:global(.site[data-motion="paused"]) .story *,
+:global(.site[data-motion="paused"]) .story *::before {
+  animation-play-state: paused !important;
+}
+
+:global(.site[data-motion="paused"]) .story .panel:global(.service-story-panel) {
+  transform: none;
+  transition: none;
+}
+
+:global(.site[data-motion="paused"]) .story .panel :is(:global(.ledger-route), :global(.request-hub), :global(.document-archive)) svg :is(path, polyline, line, rect) {
+  animation: none;
+}
+
+@keyframes borderOrbit { to { --workflow-border-angle: 360deg; } }
+@keyframes hologramOrbit { to { transform: rotate(360deg); } }
+@keyframes corePulse { 50% { opacity: 0.5; transform: scale(0.85); } }
+@keyframes scanPass {
+  0%, 100% { transform: translateY(-48px); opacity: 0; }
+  20%, 70% { opacity: 0.65; }
+  85% { transform: translateY(48px); opacity: 0; }
+}
+@keyframes iconDraw {
+  0%, 10% { stroke-dashoffset: 100; opacity: 0.45; }
+  45%, 100% { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes nodePulse { 50% { opacity: 0.45; transform: scale(0.8); } }
+
+@media (max-width: 1199px) {
+  .story .panel:global(.service-story-panel) {
+    transform: perspective(1000px) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg));
+  }
+}
+
+@media (max-height: 600px) {
+  .story .panel:global(.service-story-panel) {
+    transform: perspective(1000px) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg));
+  }
+}
+
+@media (max-width: 767px) {
+  .story .panel:global(.service-story-panel),
+  .story .panel :global(.workflow-visual) { border-radius: 16px; }
+  .story .panel :global(.module-line-art) { height: 44px; contain-intrinsic-size: auto 44px; margin-block: 4px 8px; }
+  .story .panel :global(.module-line-art) svg { height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story *, .story *::before { animation: none !important; }
+  .story .panel:global(.service-story-panel) { transform: none; transition: none; }
+  .story .panel::before,
+  .story .panel :global(.workflow-visual)::before {
+    background: linear-gradient(135deg, var(--service-accent), transparent 45%);
+  }
+  .story .panel :global(.service-story-action) svg { transform: none; transition: none; }
+}

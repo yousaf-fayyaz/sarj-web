@@ -1,0 +1,341 @@
+.motion [data-workspace-reveal="pending"] {
+  opacity: 0;
+}
+
+.motion [data-workspace-animation="icon"] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.motion :global([data-workspace-chart-line]) {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
+.motion :global([data-workspace-chart-bar]) {
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+
+.motion .number {
+  display: inline-grid;
+  position: relative;
+  font-variant-numeric: tabular-nums;
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+}
+.motion .number > span {
+  font-size: inherit;
+  color: inherit;
+}
+.measure,
+.value {
+  grid-area: 1 / 1;
+}
+.measure {
+  visibility: hidden;
+}
+.value {
+  text-align: start;
+}
+
+.motion :global(.bar-track > span) {
+  transform-origin: center bottom;
+}
+.motion :global(.performance-track > span) {
+  transform-origin: left center;
+}
+.motion[dir="rtl"] :global(.performance-track > span) {
+  transform-origin: right center;
+}
+.motion :global(.donut) {
+  background: transparent;
+}
+.motion :global(.donut)::before {
+  content: none;
+}
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ringTrack,
+.ringProgress {
+  fill: none;
+  stroke-width: 9;
+}
+.ringTrack {
+  stroke: #263624;
+}
+.ringProgress {
+  stroke: var(--primary);
+  stroke-linecap: round;
+}
+.motion [data-workspace-ambient] {
+  --workspace-loop-play: paused;
+}
+.motion [data-workspace-ambient="running"] {
+  --workspace-loop-play: running;
+}
+.motion[data-workspace-motion="enabled"] :global(.attendance-ring[data-workspace-ambient]) .ringProgress {
+  animation: attendanceRing 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: 1600ms;
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion[data-workspace-motion="enabled"] :global(.attendance-chart[data-workspace-ambient] .bar-track > span) {
+  animation: barWave 4.8s ease-in-out infinite;
+  animation-delay: var(--workspace-bar-delay, 1600ms);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion[data-workspace-motion="enabled"] :global(.performance-row[data-workspace-ambient] .performance-track > span) {
+  animation: progressWave 5.6s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion[data-workspace-motion="enabled"] :global([data-workspace-card][data-workspace-ambient] [data-workspace-chart-line]) {
+  animation: chartLine 7s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion[data-workspace-motion="enabled"] :global([data-workspace-card][data-workspace-ambient] [data-workspace-chart-bar]) {
+  animation: progressWave 5.6s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion[data-workspace-motion="enabled"] :global([data-workspace-ambient] [data-workspace-icon]) {
+  animation: iconFloat 5.6s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion[data-workspace-motion="enabled"] :global([data-workspace-ambient] .stat-dot),
+.motion[data-workspace-motion="enabled"] :global([data-workspace-ambient] .connection-dot) {
+  animation: signalPulse 3.2s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+
+.motion[data-workspace-motion="enabled"] :global(.leave-balance[data-workspace-ambient] > svg),
+.motion[data-workspace-motion="enabled"] :global(.document-row[data-workspace-ambient] > svg),
+.motion[data-workspace-motion="enabled"] :global(.performance-title[data-workspace-ambient] > svg),
+.motion[data-workspace-motion="enabled"] :global(.workspace-note[data-workspace-ambient] > svg) {
+  animation: iconFloat 5.6s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+
+.motion :global(.workspace-stats > div) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.motion :global(.workspace-stats > div)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(110deg, transparent 20%, rgb(183 211 143 / 14%) 50%, transparent 80%);
+}
+.motion[data-workspace-motion="enabled"] :global(.workspace-stats > div[data-workspace-ambient])::after {
+  animation: cardLight 8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion :global(.sample-row:not(.sample-row-head)),
+.motion :global(.document-row),
+.motion :global(.payroll-ledger > div),
+.motion :global(.performance-row),
+.motion :global(.payroll-cycle),
+.motion :global(.leave-balance) {
+  position: relative;
+  isolation: isolate;
+}
+.motion :global(.sample-row:not(.sample-row-head))::after,
+.motion :global(.document-row)::after,
+.motion :global(.payroll-ledger > div)::after,
+.motion :global(.performance-row)::after,
+.motion :global(.payroll-cycle)::after,
+.motion :global(.leave-balance)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(100deg, transparent, rgb(183 211 143 / 8%), transparent);
+  opacity: 0;
+}
+.motion[data-workspace-motion="enabled"] :global(.sample-row[data-workspace-ambient])::after,
+.motion[data-workspace-motion="enabled"] :global(.document-row[data-workspace-ambient])::after,
+.motion[data-workspace-motion="enabled"] :global(.payroll-ledger > div[data-workspace-ambient])::after,
+.motion[data-workspace-motion="enabled"] :global(.performance-row[data-workspace-ambient])::after,
+.motion[data-workspace-motion="enabled"] :global(.payroll-cycle[data-workspace-ambient])::after,
+.motion[data-workspace-motion="enabled"] :global(.leave-balance[data-workspace-ambient])::after {
+  animation: rowLight 6.4s ease-in-out infinite;
+  animation-delay: var(--workspace-loop-delay);
+  animation-play-state: var(--workspace-loop-play);
+}
+.motion :global(.workspace-nav-item) {
+  position: relative;
+  cursor: pointer;
+  min-height: 44px;
+  font-weight: 500;
+  border-color: transparent;
+  background: transparent;
+}
+.motion :global(.workspace-nav-item:not([data-state="active"])) {
+  color: #c2d0bd;
+}
+.motion :global(.workspace-nav-item[data-state="active"]) {
+  color: #e2efce;
+}
+.motion :global(.workspace-sidebar > .micro) {
+  margin-bottom: 6px;
+}
+.navHint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 10px 12px;
+  color: var(--primary);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.navHint > svg {
+  flex-shrink: 0;
+}
+.navLabel {
+  flex: 1;
+  min-width: 0;
+}
+.motion :global(.workspace-nav-item:hover),
+.motion :global(.workspace-nav-item:focus-visible) {
+  color: #e2efce;
+}
+.motion :global(.workspace-nav-item)::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -1px;
+  inset-block: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+  transform: scaleY(0);
+}
+.motion :global(.workspace-nav-item[data-state="active"])::before {
+  transform: scaleY(1);
+}
+.motion[data-workspace-motion="enabled"] :global(.workspace-nav-item),
+.motion[data-workspace-motion="enabled"] :global(.workspace-stats > div),
+.motion[data-workspace-motion="enabled"] :global(.attendance-chart),
+.motion[data-workspace-motion="enabled"] :global(.attendance-ring),
+.motion[data-workspace-motion="enabled"] :global(.document-row),
+.motion[data-workspace-motion="enabled"] :global(.sample-row),
+.motion[data-workspace-motion="enabled"] :global(.status-pending) {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+.motion[data-workspace-motion="enabled"] :global(.workspace-nav-item)::before {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.motion[data-workspace-motion="enabled"] :global(.stat-dot) {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), opacity 180ms ease;
+}
+.motion :global(.workspace-nav-item:focus-visible),
+.motion :global(.status-pending:focus-visible) {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion[data-workspace-motion="enabled"] :global(.workspace-stats > div:hover),
+  .motion[data-workspace-motion="enabled"] :global(.attendance-chart:hover),
+  .motion[data-workspace-motion="enabled"] :global(.attendance-ring:hover),
+  .motion[data-workspace-motion="enabled"] :global(.document-row:hover) {
+    transform: translateY(-2px);
+    border-color: rgb(183 211 143 / 35%);
+  }
+  .motion[data-workspace-motion="enabled"] :global(.workspace-stats > div:hover .stat-dot) {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+  .motion :global(.sample-row:not(.sample-row-head):hover) {
+    background: rgb(183 211 143 / 4%);
+  }
+  .motion[data-workspace-motion="enabled"] :global(.status-pending:hover) {
+    transform: translateY(-1px);
+  }
+}
+
+:global(html[data-motion="enabled"]) .overlay[data-state="open"] {
+  animation: overlayIn 180ms ease both;
+}
+:global(html[data-motion="enabled"]) .overlay[data-state="closed"] {
+  animation: overlayIn 140ms ease reverse both;
+}
+:global(html[data-motion="enabled"]) .dialog[data-state="open"] {
+  animation: dialogIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+:global(html[data-motion="enabled"]) .dialog[data-state="closed"] {
+  animation: dialogIn 140ms ease reverse both;
+}
+
+@keyframes cardLight {
+  0% { transform: translateX(-110%); opacity: 0; }
+  4% { opacity: 1; }
+  20%, 100% { transform: translateX(110%); opacity: 0; }
+}
+@keyframes barWave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.9); }
+}
+@keyframes progressWave {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.96); }
+}
+@keyframes attendanceRing {
+  0%, 15%, 80%, 100% { stroke-dashoffset: 0; }
+  45% { stroke-dashoffset: var(--workspace-ring-value, 93); }
+}
+@keyframes chartLine {
+  0%, 20%, 80%, 100% { stroke-dashoffset: 0; }
+  45% { stroke-dashoffset: 100; }
+}
+@keyframes signalPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes rowLight {
+  0%, 70%, 100% { opacity: 0; }
+  35% { opacity: 1; }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes dialogIn {
+  from { opacity: 0; transform: translate(-50%, -50%) translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion [data-workspace-reveal="pending"] {
+    opacity: 1;
+  }
+  .motion[data-workspace-motion] *,
+  .motion[data-workspace-motion] *::after,
+  .motion[data-workspace-motion] *::before,
+  .dialog[data-state],
+  .overlay[data-state] {
+    animation: none !important;
+  }
+  .motion[data-workspace-motion] *,
+  .motion[data-workspace-motion] *::before {
+    transition: none !important;
+  }
+}

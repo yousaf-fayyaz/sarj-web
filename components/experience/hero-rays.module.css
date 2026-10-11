@@ -1,0 +1,46 @@
+.rays {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 72%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 1;
+  background: radial-gradient(ellipse at 100% 0%, rgb(184 213 143 / 8%), transparent 68%);
+  mask-image:
+    linear-gradient(90deg, transparent, #000 20%),
+    linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.rays :global(.side-rays-container) {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+:global(.site[dir="rtl"]) .rays {
+  right: auto;
+  left: 0;
+  transform: scaleX(-1);
+}
+
+.rays ~ :global(.opening-grid) {
+  position: relative;
+  z-index: 1;
+}
+
+.rays ~ :global(.opening-index),
+.rays ~ :global(.opening-scroll) {
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .rays {
+    width: 88%;
+    opacity: 0.8;
+  }
+}

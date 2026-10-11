@@ -1,0 +1,101 @@
+/* A shared GPU surface tracks the illustrations without intercepting input. */
+.artwork-webgl {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.artwork-webgl[data-ready="true"] {
+  opacity: 1;
+}
+
+.sculpture [data-module-art],
+.sculpture-picture {
+  transition: opacity 350ms ease;
+}
+
+.sculpture[data-art-ready="true"] [data-module-art],
+.sculpture[data-art-ready="true"] .sculpture-picture {
+  opacity: 0;
+}
+
+.module-card:hover .sculpture[data-art-ready="true"] {
+  transform: none;
+}
+
+.module-card:focus-visible {
+  border-color: var(--primary);
+  outline: 2px solid var(--primary);
+  outline-offset: 5px;
+}
+
+.module-index,
+.module-icon,
+.story-number {
+  z-index: 2;
+}
+
+.story-interface {
+  z-index: 2;
+}
+
+/* Small SVG marks share the same restrained, intentional motion language. */
+.site[data-motion="enabled"] .brand-spark {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: brand-light 6s ease-in-out infinite;
+}
+
+.site[data-motion="enabled"] :is(a, button):is(:hover, :focus-visible) .brand-symbol {
+  transform: rotate(-4deg);
+}
+
+.brand-symbol {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.module-caption > svg,
+.module-icon svg {
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site[data-motion="enabled"] .module-card:is(:hover, :focus-visible) .module-caption > svg {
+  transform: translate(3px, -3px);
+}
+
+.site[data-motion="enabled"] .module-card:is(:hover, :focus-visible) .module-icon svg {
+  transform: scale(1.12);
+}
+
+.site[dir="rtl"][data-motion="enabled"] .module-card:is(:hover, :focus-visible) .module-caption > svg {
+  transform: translate(-3px, -3px);
+}
+
+@keyframes brand-light {
+  0%, 65%, 100% { transform: scale(1) rotate(0); opacity: 1; }
+  78% { transform: scale(0.82) rotate(-12deg); opacity: 0.65; }
+  88% { transform: scale(1.16) rotate(8deg); opacity: 1; }
+}
+
+.site[data-motion="paused"] :is(.brand-spark, .brand-symbol, .module-caption > svg, .module-icon svg) {
+  animation: none;
+  transition: none;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-spark,
+  .brand-symbol,
+  .module-caption > svg,
+  .module-icon svg,
+  .sculpture [data-module-art],
+  .sculpture-picture {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
